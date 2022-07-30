@@ -20,18 +20,18 @@ class Publication(Base):
     __tablename__ = 'publication'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
-    comments_id = Column(Integer, ForeignKey('comments.id'))
-    likes_id = Column(Integer, ForeignKey('likes.id'))
 
 class Comments(Base):
     __tablename__ = 'comments'
     id = Column(Integer, primary_key=True)
+    publication_id = Column(Integer, ForeignKey('publication.id'))
     user_id = Column(Integer, ForeignKey('user.id'))
     text = Column(String(250), nullable=False)
 
 class Likes(Base):
     __tablename__ = 'likes'
     id = Column(Integer, primary_key=True)
+    publication_id = Column(Integer, ForeignKey('publication.id'))
     user_id = Column(Integer, ForeignKey('user.id'))
     number = Column(Integer, nullable=False)
 
